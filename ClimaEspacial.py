@@ -4,9 +4,9 @@ import time
 LIMITE_RADIACAO_SEGURO_MEV = 85.0
 
 lista_de_satelites_proprios = [
-    {"identificador": "MEU-SAT-1", "altitude_atual": 600, "status": "Operacional"},
-    {"identificador": "MEU-SAT-2", "altitude_atual": 610, "status": "Operacional"},
-    {"identificador": "MEU-SAT-3", "altitude_atual": 1200, "status": "Operacional"},
+    {"identificador": "FLY-GEO-1", "altitude_atual": 600, "status": "Operacional"},
+    {"identificador": "FLY-GEO-2", "altitude_atual": 610, "status": "Operacional"},
+    {"identificador": "FLY-GEO-3", "altitude_atual": 1200, "status": "Operacional"},
 ]
 
 def obter_leitura_sensores_solares():
@@ -16,34 +16,32 @@ def obter_leitura_sensores_solares():
 
 def gerenciar_clima_espacial_frota(lista_de_satelites):
     print("\n" + "=" * 60)
-    print("\tFLYSPACE - SISTEMA DE MONITORAMENTO DE CLIMA ESPACIAL")
+    print("\tFLYSPACE - MONITORAMENTO GEOMAGNÉTICO DE RADIAÇÃO")
     print("=" * 60)
-    time.sleep(1.0)
+    time.sleep(0.8)
 
     nivel_radiacao_atual = obter_leitura_sensores_solares()
-    print(f"TELEMETRIA SOLAR ATUAL: {nivel_radiacao_atual} MeV")
+    print(f"[TELEMETRIA]: Fluxo de Prótons Energéticos detectado: {nivel_radiacao_atual} MeV")
+    print(f"[ANÁLISE DE SEGURANÇA]: Limiar Crítico de Domínio = {LIMITE_RADIACAO_SEGURO_MEV} MeV")
 
     if nivel_radiacao_atual > LIMITE_RADIACAO_SEGURO_MEV:
-        print(f"ALERTA CRÍTICO: Tempestade solar detectada! Nível acima de {LIMITE_RADIACAO_SEGURO_MEV} MeV.")
-        print("Iniciando protocolo automático de salvaguarda eletrônica...\n")
-        time.sleep(1.5)
+        print(f"\nALERTA MODELO MATEMÁTICO: {nivel_radiacao_atual} MeV > {LIMITE_RADIACAO_SEGURO_MEV} MeV!")
+        print("Tempestade Solar Ativa. Executando interrupção de barramento elétrico...\n")
+        time.sleep(1.0)
 
         for satelite in lista_de_satelites:
             print(f"Modificando {satelite['identificador']}:")
-            print("  -> Desligando cargas úteis e instrumentos não essenciais...")
-            time.sleep(0.5)
+            print("-> Isolando painéis solares e suspendendo transmissão de rádio...")
             satelite["status"] = "Safe Mode (Modo de Segurança)"
-            print(f"  -> Status atualizado: {satelite['status']}\n")
-            time.sleep(0.5)
-
-        print("Toda a frota Flyspace está protegida em Modo de Segurança.")
+            print(f"-> [STATUS ATUALIZADO]: {satelite['status']}")
+            time.sleep(0.4)
+        print("\nToda a frota ativa encontra-se protegida contra surtos de radiação.")
     else:
-        print("Clima espacial estável. Ventos solares dentro da normalidade.")
-        print("Mantendo todos os satélites em regime de operação total.\n")
-
+        print(f"\n[CONDIÇÃO ESTÁVEL]: {nivel_radiacao_atual} MeV <= {LIMITE_RADIACAO_SEGURO_MEV} MeV.")
+        print("Magnetosfera controlada. Mantendo frotas em regime de alta performance.\n")
         for satelite in lista_de_satelites:
             satelite["status"] = "Operacional"
 
     print("=" * 60)
-    print("\t\tMONITORAMENTO DE CLIMA CONCLUÍDO")
+    print("\t\tVARREDURA DE CLIMA FINALIZADA")
     print("=" * 60 + "\n")

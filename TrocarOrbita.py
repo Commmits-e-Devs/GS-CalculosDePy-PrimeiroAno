@@ -12,21 +12,25 @@ lista_de_satelites_proprios = [
     {"identificador": "MEU-SAT-3", "altitude_atual": 620},
 ]
 
+
 def calcular_velocidade_orbital(altitude_km):
     raio_orbital = RAIO_TERRA_KM + altitude_km
     velocidade = math.sqrt(GM_TERRA / raio_orbital)
     return round(velocidade, 3)
+
 
 def calcular_periodo_orbital(altitude_km):
     raio_orbital = RAIO_TERRA_KM + altitude_km
     periodo_segundos = 2 * math.pi * math.sqrt((raio_orbital ** 3) / GM_TERRA)
     return round(periodo_segundos / 60, 2)
 
+
 def calcular_delta_v(altitude_1, altitude_2):
     v1 = calcular_velocidade_orbital(altitude_1)
     v2 = calcular_velocidade_orbital(altitude_2)
     delta_v = abs(v2 - v1)
     return round(delta_v, 3)
+
 
 def buscar_satelite_proximo():
     if random.randint(1, 10) <= 7:
@@ -38,8 +42,10 @@ def buscar_satelite_proximo():
         }
     return None
 
+
 def validar_se_nova_altitude_esta_vazia(altitude_para_testar):
     return random.randint(1, 100) <= 80
+
 
 def realizar_manobra_com_desvio_incrementado(
         id_satelite, altitude_original, tempo_espera, altitude_concorrente
@@ -153,6 +159,7 @@ def realizar_manobra_de_aceleracao(id_satelite, altitude_original, vel_original,
     time.sleep(1.0)
 
     return True
+
 
 def executar_monitoramento_satelite(satelite_atual):
     print("\n" + "=" * 60)

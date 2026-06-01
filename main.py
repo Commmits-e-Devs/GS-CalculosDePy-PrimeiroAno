@@ -1,6 +1,4 @@
 import time
-
-#importando os arquivos de todos os prototipo
 import MapeamentoDaOrbita
 import Lancamento
 import TrocarOrbita
@@ -21,19 +19,18 @@ def exibir_menu():
     print("-" * 55)
 
 def main():
-
     while True:
         exibir_menu()
         opcao = input("Escolha uma opção válida (0 a 6): ").strip()
 
         if opcao == '1':
-            print("\n" + "=" * 65)
+            print("\n" + "=" * 68)
             print("A Flyspace é uma startup de Space Tech focada na gestão autônoma")
             print("do tráfego orbital. Nosso sistema processa dados TLE em tempo real,")
             print("lança satélites com segurança, previne colisões espaciais através")
-            print("de manobras de desvio, mitiga, lixo espacial com desorbitagem")
-            print("e protege frotas contra radiação.")
-            print("=" * 65 + "\n")
+            print("de manobras de desvio, mitiga lixo espacial com desorbitagem")
+            print("e protege frotas contra tempestades de radiação solar.")
+            print("=" * 68 + "\n")
             time.sleep(2.5)
 
         elif opcao == '2':
@@ -64,11 +61,9 @@ def main():
         elif opcao == '0':
             print("\n>> Encerrando o sistema da FlySpace. Até logo!\n")
             break
-
         else:
             print("\nERRO: Entrada inválida! Por favor, digite apenas números entre 0 e 6.")
             time.sleep(1.5)
 
-#partida para executar tudo aqui
 if __name__ == "__main__":
     main()
