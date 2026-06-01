@@ -5,7 +5,6 @@ NUM_ALTITUDES = 3
 NUM_GRAUS = 360
 MARGEM_SEGURANCA = 2
 
-
 def lancamento():
     def criar_matriz_espacial():
         return [[0 for _ in range(NUM_GRAUS)] for _ in range(NUM_ALTITUDES)]
@@ -45,15 +44,15 @@ def lancamento():
             for ang in range(angulo_alvo - 5, angulo_alvo + 6):
                 ang_normalizado = ang % 360
                 if alt == altitude_alvo and ang_normalizado == angulo_alvo:
-                    linha_visual.append(" 🛰️ ")  # Satélite lançado com sucesso
+                    linha_visual.append(" 🛰️ ")
                 elif espaco[alt][ang_normalizado] == 1:
-                    linha_visual.append(" 💥 ")  # Objeto/Detrito concorrente detectado
+                    linha_visual.append(" 💥 ")
                 else:
-                    linha_visual.append("  . ")  # Espaço vazio estável
+                    linha_visual.append("  . ")
 
             marcador = "=>" if alt == altitude_alvo else "  "
             print(f"{marcador} {nomes_altitudes[alt]} |" + "".join(linha_visual))
-        print("Legenda: [ . Espaço Livre ]  [ 💥 Detrito/Ocupado ]  [ 🛰️ Seu Satélite ]\n")
+        print("Legenda: [ . Espaço Livre ]  [ Detrito/Ocupado ]  [ Seu Satélite ]\n")
 
     def lancar_satelite(espaco, nome, altitude, angulo):
         if altitude >= len(espaco):
